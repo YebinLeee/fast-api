@@ -2,13 +2,39 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
-from pydantic import BaseModel
+from typing import Optional
+from pydantic import BaseModel, EmailStr, Field
 
 import requests
 
 app = FastAPI()
 
 db = []
+
+
+
+# User 모델
+class UserIn(BaseModel):
+    username: str
+    password: str
+    email: EmailStr
+
+class UserOut(BaseModel):
+    username: str
+    email: EmailStr
+
+@app.post("/user/", response_model=UserOut)
+async def create_user(user:UserIn):
+    return user    
+
+# 게시글 Board 모델
+class Board(BaseModel):
+    title: str          # 멘토링 팀 공고 제목
+    author: str         # 게시글 작성자
+    contents: Optional[str] = Field(None, title="멘토링 모집글 내용을 작성해주세요.")       # 게시물 내용
+    target: str         # 멘토링 대상
+
+
 
 class City(BaseModel):
     name: str
