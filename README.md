@@ -13,6 +13,9 @@
 
 - database installation : `pip install databases`
 - pymysql installation : `pip install --upgrade pymysql`
+- Starlette installation : `pip install starlette` (a lightweight ASGI framework- building async web services in PYthon - WebSocket support, test client built on requests, session and cookie support, CORS, GZip, Static Files, Streaming Responses)
+
+
 <br>
 
 - localhost runserver : `uvicorn main:app --reload`
@@ -20,3 +23,5 @@
 <br>
 
 ## fastAPI CRUD
+
+## web CRUD
